@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
+<body id="main-wrapper">
+    <header id="header"></header>
     <div id="userCard-wrapper"></div>
 
     <form action="">
@@ -124,7 +125,8 @@
 
             const button = document.createElement('button')
             div.appendChild(button)
-            button.textContent('delete')
+            button.textContent = ('delete')
+            button.classList.add('btn')
             button.addEventListener('click' , () => {
                 div.remove()
             })
@@ -161,6 +163,63 @@
             userCard.push(newCard);
         }
         });
+
+        // #5( დაამატეთ ჰედერი , სადაც გექნებათ ორი ღილაკი ავტორიზაცია და რეგისტრაცია; ავტროიზაციისას გახსეnით ავტორიზაციის მოდალი, სადაც ელ ფოსტის და პაროლის ველები გექნებათ; ასევე დაამატეთ 2 ღილაკი, "login " და  "close";login-ზე დაჭერისას ალერტში გამოიტანეთ  ინფუთებში შეყვანილი ინფორმაცია;(form submit)|close-ზე დაჭერისას დახურეთ მოდალი;)
+        const header = document.getElementById('header')
+        header.classList.add('btn')
+
+        const btn1 = document.createElement('button')
+        btn1.textContent = 'ავტორიზაცია'
+        header.appendChild(btn1)
+
+        const btn2 = document.createElement('button')
+        btn2.textContent = 'რეგისტრაცია'
+        header.appendChild(btn2)
+
+        btn1.addEventListener('click' , () => {
+            const body = document.getElementById('main-wrapper')
+
+            const divAbsolute = document.createElement('div')
+            body.appendChild(divAbsolute)
+            divAbsolute.classList.add('position-absolute-div')
+
+            const authorizationInput = document.createElement('input')
+            authorizationInput.type = 'email'
+            authorizationInput.classList.add('authorization-input')
+            authorizationInput.setAttribute('placeholder' , '   Enter your E-mail...')
+            divAbsolute.appendChild(authorizationInput)
+
+            const authorizationInput2 = document.createElement('input')
+            authorizationInput2.type = 'password'
+            authorizationInput2.classList.add('authorization-input')
+            authorizationInput2.setAttribute('placeholder' , '   Enter password...')
+            divAbsolute.appendChild(authorizationInput2)
+
+            const btnWrapper = document.createElement('div')
+            divAbsolute.appendChild(btnWrapper)
+            btnWrapper.classList.add('btn-wrapper')
+
+            const inputBtn1 = document.createElement('button')
+            btnWrapper.appendChild(inputBtn1)
+            inputBtn1.classList.add('btn')
+            inputBtn1.textContent = 'login'
+
+            const inputBtn2 = document.createElement('button')
+            btnWrapper.appendChild(inputBtn2)
+            inputBtn2.classList.add('btn')
+            inputBtn2.textContent = 'close'
+
+            inputBtn1.addEventListener('click' , () => {
+                const value = authorizationInput.value
+                alert(value)
+            })
+
+            inputBtn2.addEventListener('click' , () => {
+                divAbsolute.style.display = 'none'
+            })
+
+        })
+
     </script>
 </body>
 </html>
